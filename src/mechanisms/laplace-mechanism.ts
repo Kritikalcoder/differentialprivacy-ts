@@ -25,10 +25,20 @@ class LaplaceMechanism<T extends number> extends PerturbationMechanism<T> {
 
   }
 
+  private exponentialSample = (mean: number): number => {
+    return (mean*-1)*Math.log(Math.random())
+  }
+
   addNoise(sensitivity: number, queryResult: T): Result<T> {
     // 1) sample from laplace distribution
+    let noise = this.exponentialSample(sensitivity) - this.exponentialSample(sensitivity)
+
     // 2) add that noise to the query result
+    let result = queryResult + noise
+
     // 3) calculate upper and lower bounds
+
+
     // 4) check if bounds exceeded. if bounds are exceeded return StatusCode.OutOfRange
     // 5) if bounds not exceeded:
     // 5.1) set CurrentStatus to SuccessfullyPerturbed
