@@ -40,7 +40,7 @@
     "completed-docs": [
       true,
       {
-        "enums": true,
+        "enums": false,
         "functions": { "visibilities": ["exported"] },
         "classes": { "visibilities": ["exported"] },
         "interfaces": { "visibilities": ["exported"] },
