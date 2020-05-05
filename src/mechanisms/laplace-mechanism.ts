@@ -14,9 +14,9 @@ class LaplaceMechanism<T extends number> extends PerturbationMechanism<T> {
     return this._currentStatus;
   }
 
-  protected readonly _delta: number;
-  protected readonly _epsilon: number;
-  protected readonly _currentStatus: StatusCode;
+  protected _delta: number;
+  protected _epsilon: number;
+  protected _currentStatus: StatusCode;
 
   constructor() {
     super();
@@ -36,17 +36,23 @@ class LaplaceMechanism<T extends number> extends PerturbationMechanism<T> {
     // 2) add that noise to the query result
     let result = queryResult + noise
 
-    // 3) calculate upper and lower bounds
+    // 3) Validate result is within bounds
+    if(result < this.getLowerBounds() || result > this.getUpperBounds()) {
+      this._currentStatus = StatusCode.OutOfRange
+      return this._currentStatus;
+    }
 
+    // 4) if bounds not exceeded:
+    // 4.1) Update privacy budget,
 
-    // 4) check if bounds exceeded. if bounds are exceeded return StatusCode.OutOfRange
-    // 5) if bounds not exceeded:
-    // 5.1) set CurrentStatus to SuccessfullyPerturbed
-    // 5.2) update privacy budget
+    // 4.1) set CurrentStatus to SuccessfullyPerturbed
+    this._currentStatus = StatusCode.SuccessfullyPerturbed;
+    // 4.2) update privacy budget
+
     // 5.3) if privacy budget exceeded set CurrentStatus to RunOutOfBudget and return that value
-    // 5.4) return result
 
-    return StatusCode.Error;
+    // 5.4) return result
+    return result;
   }
 
   // Ria to research best approach
