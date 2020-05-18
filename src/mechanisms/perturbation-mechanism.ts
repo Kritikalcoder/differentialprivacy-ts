@@ -6,6 +6,7 @@ enum StatusCode {
     SuccessfullyPerturbed, // Noise added successfully
     PrivacyBudgetExceeded, // Privacy budget exceeded
     OutOfRange, // exceeded bounds
+    NoiseOverflow, // generated noise is likely to overflow
     Error, // unknown error occurred
 }
 

@@ -54,6 +54,7 @@
     "instrument": true
   },
   "dependencies": {
+    "distributions-laplace-cdf": "0.0.0",
     "got": "9.6.0"
   },
   "devDependencies": {
@@ -70,7 +71,7 @@
     "sinon": "7.3.1",
     "source-map-support": "0.5.11",
     "ts-node": "8.0.3",
-    "tslint": "5.14.0",
+    "tslint": "^5.14.0",
     "tslint-config-airbnb": "5.11.1",
     "typescript": "3.4.1"
   }
